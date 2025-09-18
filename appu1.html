@@ -1,0 +1,45 @@
+ <html>
+<head><center>
+  <title>Student Feedback Form</title>
+  <style>body{
+    background-color:rgb(175, 173, 173)
+  }
+    h2{
+      color:rgb(97, 94, 94)
+    }
+    label{
+      color:rgb(49, 49, 82)
+    }
+  </style>
+</head>
+<body>
+  <h2>Student Feedback Form</h2>
+  <form>
+    
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+
+    
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+
+    
+    <label for="course">Course:</label><br>
+    <select id="course" name="course">
+      <option>Web Development</option>
+      <option>Data Science</option>
+      <option>AI & ML</option>
+      <option>cyber security
+      </option>
+    </select><br><br>
+
+  
+    <label for="comments">Your Feedback:</label><br>
+    <textarea id="comments" name="comments" rows="4" cols="30"></textarea><br><br>
+
+
+     <input type="submit" value="submit">
+    <input type="reset" value="Reset">
+  </center></form>
+</body>
+</html>
