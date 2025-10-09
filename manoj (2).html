@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Form and Table</title>
+  <style>
+    /* General body styling */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f4f8;
+      margin: 40px;
+      color: #333;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+
+    /* Form styling */
+    form {
+      background-color: #ffffff;
+      max-width: 500px;
+      margin: 0 auto 30px auto;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    form:hover {
+      transform: scale(1.02);
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 10px;
+      color: #34495e;
+    }
+
+    input[type="text"], input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    input[type="text"]:focus, input[type="email"]:focus {
+      border-color: #3498db;
+      outline: none;
+    }
+
+    button {
+      background-color: #3498db;
+      color: white;
+      padding: 12px 20px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    /* Table styling */
+    table {
+      width: 80%;
+      margin: 0 auto;
+      border-collapse: collapse;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      background-color: #ffffff;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #0099ff;
+      color: white;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover td {
+      background-color: #f1f1f1;
+    }
+
+    /* Footer styling */
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Student Information Form</h2>
+
+  <!-- Form -->
+  <form>
+    <label for="name">Name:</label>
+    <input type="text" id="name" placeholder="Enter your name">
+
+    <label for="email">Phone no:</label>
+    <input type="email" id="email" placeholder="Enter your email">
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" placeholder="Enter your email">
+
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <!-- Table -->
+  <table>
+    <tr>
+      <th>Sr. No</th>
+      <th>Name</th>
+      <th>phone no</th>
+      <th>Email</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>John Doe</td>
+      <td>john@example.com</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Alice Smith</td>
+      <td>alice@example.com</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Bob Johnson</td>
+      <td>bob@example.com</td>
+    </tr>
+  </table>
+
+  <div class="footer">
+    RV Vidyaniketan, 8th Mile, Mysuru Road, Bengaluru – 560059, India<br>
+    Ph: +91 80 68199900 | <a href="https://www.rvu.edu.in" target="_blank">www.rvu.edu.in</a>
+  </div>
+
+</body>
+</html>
