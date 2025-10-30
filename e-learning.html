@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course: HTML & CSS Fundamentals</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 1. Global Reset & Variables --- */
+        :root {
+            --primary-color: #007bff; /* Blue for branding */
+            --secondary-color: #28a745; /* Green for enroll buttons */
+            --accent-color: #ffc107; /* Yellow/Gold for highlights */
+            --text-dark: #333;
+            --text-light: #fff;
+            --bg-light: #f4f7f6;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 0.5em;
+            font-weight: 600;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+
+        /* --- 2. Header & Navigation (Reused) --- */
+        .main-header {
+            background: var(--text-dark);
+            color: var(--text-light);
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+
+        .main-nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin-left: 20px;
+            padding: 8px 15px;
+            transition: background-color 0.3s;
+            border-radius: 5px;
+        }
+
+        .main-nav a:hover:not(.btn-primary) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--text-light) !important;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            border: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3; 
+        }
+
+        .btn-large {
+            padding: 15px 30px;
+            font-size: 1.1em;
+        }
+        
+        /* --- 3. Course Detail Banner/Hero (Reused) --- */
+        .course-banner {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 60px 20px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-banner h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .course-banner .course-stats {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .course-banner .stat-item {
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+        
+        /* --- 4. Main Content Layout (Reused) --- */
+        .detail-container {
+            display: flex;
+            gap: 30px;
+        }
+
+        .course-main-content {
+            flex: 3;
+        }
+
+        .course-sidebar {
+            flex: 1;
+            padding: 20px;
+            background-color: var(--text-light);
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            align-self: flex-start;
+        }
+        
+        /* --- 5. Syllabus and Modules (UPDATED for 'Dynamic' Content) --- */
+        .module-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        
+        /* Module Title/Toggle Link */
+        .module-item > a {
+            display: block;
+            background-color: var(--text-light);
+            border-left: 5px solid var(--primary-color);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 1.2em;
+            transition: background-color 0.2s;
+            position: relative;
+        }
+
+        .module-item > a:hover {
+            background-color: #f0f7ff; /* Lightest primary hover */
+        }
+        
+        /* Arrow/Toggle Icon */
+        .module-item > a::after {
+            content: '▼';
+            position: absolute;
+            right: 15px;
+            font-size: 0.8em;
+            transition: transform 0.3s;
+        }
+        
+        /* Content Area (Hidden by default) */
+        .module-content {
+            padding: 0 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, padding 0.4s;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+            margin-bottom: 15px;
+        }
+
+        /* Show content when the target is active (simulated dynamic effect) */
+        .module-item:target .module-content {
+            max-height: 500px; /* Large enough value to show all content */
+            padding: 15px;
+        }
+        
+        /* Rotate arrow when content is visible */
+        .module-item:target > a::after {
+            transform: rotate(180deg);
+        }
+
+        /* Sub-list styling for module content */
+        .module-content ul {
+            list-style: disc;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            color: #555;
+            font-size: 0.95em;
+        }
+        
+        /* New section styling for Prerequisites/Outcomes */
+        .info-section {
+            background-color: var(--text-light);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 30px;
+        }
+
+        .info-section h3 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        .info-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .info-section li {
+            background-color: #fff8e1; /* Light yellow for info list */
+            margin-bottom: 8px;
+            padding: 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            font-size: 0.95em;
+        }
+        
+        .info-section li::before {
+            content: '✅';
+            margin-right: 10px;
+        }
+        
+        /* Student Review Section */
+        .reviews-section {
+            margin-top: 40px;
+        }
+
+        .review-card {
+            background-color: var(--text-light);
+            border-left: 4px solid var(--accent-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .review-card strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-dark);
+        }
+
+        .review-card .rating {
+            color: var(--accent-color);
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        /* --- 6. Study Materials & Resources (Reused) --- */
+        .resources-section {
+            background-color: #e9f7ff; 
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 40px;
+            border: 1px dashed var(--primary-color);
+        }
+        
+        /* --- 7. Sidebar Enrollment/Info (Reused) --- */
+        .course-sidebar h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .price {
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        /* --- 8. Footer (Reused) --- */
+        .main-footer {
+            background: var(--text-dark);
+            color: #bbb;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            margin-top: 40px;
+        }
+        
+        /* --- 9. Responsive Design (Reused) --- */
+        @media (max-width: 992px) {
+            .detail-container {
+                flex-direction: column;
+            }
+            
+            .course-sidebar {
+                order: -1; 
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-header {
+                flex-direction: column;
+                padding: 15px 20px;
+            }
+            
+            .course-banner h1 {
+                font-size: 2em;
+            }
+            
+            .course-banner .course-stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">LearnHub</div>
+        <nav class="main-nav">
+            <a href="index.html">Home</a>
+            <a href="courses.html">Courses</a>
+            <a href="#">About</a>
+            <a href="#" class="btn-primary">Sign Up</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="course-banner">
+            <h1>HTML & CSS Fundamentals 💻</h1>
+            <p>The definitive guide to building solid, beautiful, and responsive websites from the ground up.</p>
+            <div class="course-stats">
+                <div class="stat-item">⭐️ 4.9 Rating (2,450 students)</div>
+                <div class="stat-item">🧑‍🏫 Taught by: Jane Doe, Senior Developer</div>
+                <div class="stat-item">⏱️ 15 Total Hours of Content</div>
+            </div>
+        </section>
+
+        <div class="detail-container">
+            <section class="course-main-content">
+                
+                <h2>What You Will Learn</h2>
+                <div class="info-section">
+                    <ul>
+                        <li>Master **Semantic HTML5** for better SEO and structure.</li>
+                        <li>Build **fully responsive layouts** using modern Flexbox and Grid.</li>
+                        <li>Create beautiful interfaces using typography, color theory, and CSS effects.</li>
+                        <li>Develop a **professional portfolio website** from scratch.</li>
+                        <li>Understand the **CSS Box Model** and responsive units (rem, em, vw, vh).</li>
+                    </ul>
+                </div>
+                
+                <br>
+                
+                <h2>Course Prerequisites</h2>
+                <div class="info-section">
+                    <p style="font-size: 1em; color: var(--text-dark);">This course is designed for **total beginners**. You only need:</p>
+                    <ul style="margin-top: 10px;">
+                        <li style="background-color: #fff3cd;">A computer (Windows, Mac, or Linux).</li>
+                        <li style="background-color: #fff3cd;">A stable internet connection.</li>
+                        <li style="background-color: #fff3cd;">A text editor (we recommend VS Code, which we show you how to set up).</li>
+                    </ul>
+                </div>
+
+                <br>
+                
+                <h2>Full Course Syllabus (Click to Expand) 📚</h2>
+                <ul class="module-list">
+                    
+                    <li class="module-item" id="module-1">
+                        <a href="#module-1">Module 1: The Core of HTML (3.0 Hrs)</a>
+                        <div class="module-content">
+                            <h4>Lessons:</h4>
+                            <ul>
+                                <li>Introduction to Web Fundamentals (Video)</li>
+                                <li>Structuring Content with Semantic HTML5 (Practice)</li>
+                                <li>Working with Text, Lists, and Links</li>
+                                <li>Building Robust HTML Forms</li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <li class="module-item" id="module-2">
+                        <a href="#module-2">Module 2: CSS Basics and Selectors (3.5 Hrs)</a>
+                        <div class="module-content">
+                            <h4>Lessons:</h4>
+                            <ul>
+                                <li>CSS Syntax, Inline vs. External Styles</li>
+                                <li>Understanding the CSS Cascade, Specificity, and Inheritance</li>
+                                <li>Mastering the Box Model and Positioning</li>
+                                <li>Colors, Backgrounds, and Basic Typography</li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <li class="module-item" id="module-3">
+                        <a href="#module-3">Module 3: Advanced Layout: Flexbox & Grid (4.0 Hrs)</a>
+                        <div class="module-content">
+                            <h4>Lessons:</h4>
+                            <ul>
+                                <li>Deep Dive into CSS Flexbox for components (Practice)</li>
+                                <li>Introduction to CSS Grid for full-page layouts</li>
+                                <li>Building a responsive navigation bar</li>
+                                <li>Handling images and media in a responsive way</li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="module-item" id="module-4">
+                        <a href="#module-4">Module 4: Final Project & Deployment (4.5 Hrs)</a>
+                        <div class="module-content">
+                            <h4>Lessons:</h4>
+                            <ul>
+                                <li>Designing the Portfolio Layout (Design Theory)</li>
+                                <li>Coding the Portfolio Sections (Header, About, Projects)</li>
+                                <li>Implementing Media Queries for mobile responsiveness</li>
+                                <li>**Bonus:** Deploying your site live with GitHub Pages</li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                </ul>
+
+                <section class="resources-section">
+                    <h3>Essential Tools & Resources 🎁</h3>
+                    <ul>
+                        <li><a href="#" target="_blank">Download: HTML & CSS Starter Templates (ZIP)</a></li>
+                        <li><a href="#" target="_blank">Resource Link: MDN Web Docs - The ultimate reference</a></li>
+                        <li><a href="#" target="_blank">Tool: Free Color Palette Generator - Find your perfect scheme</a></li>
+                        <li><a href="#" target="_blank">External Tutorial: Understanding CSS Animation Fundamentals</a></li>
+                    </ul>
+                </section>
+                
+                <section class="reviews-section">
+                    <h2>What Students Are Saying</h2>
+                    <div class="review-card">
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <strong>Amazing Start to Web Dev!</strong>
+                        <p>"Jane explains complex topics like Flexbox and Grid better than any other course I've taken. The final portfolio project was invaluable." - Alex L.</p>
+                    </div>
+                    <div class="review-card">
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <strong>Clear, Concise, and Practical.</strong>
+                        <p>"I went from knowing zero code to confidently launching my first site. Highly recommend this for absolute beginners." - Sarah M.</p>
+                    </div>
+                </section>
+                
+            </section>
+            
+            <aside class="course-sidebar">
+                <h3>Enroll Today!</h3>
+                <div class="price">$49.99 <span style="font-size: 0.6em; color: #888;">(Lifetime Access)</span></div>
+                <a href="#" class="btn-primary btn-large" style="width: 100%;">ENROLL NOW</a>
+                
+                <div class="sidebar-meta">
+                    <div>Includes: <span>Video Lectures</span></div>
+                    <div>Access: <span>Lifetime</span></div>
+                    <div>Certificate: <span>Yes, Upon Completion</span></div>
+                    <div>Quizzes: <span>10 Practice Tests</span></div>
+                    <div>Support: <span>Q&A Forum Access</span></div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 LearnHub. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+        </div>
+    </footer>
+
+</body>
+</html>
