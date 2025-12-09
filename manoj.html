@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Namma Bengaluru | The Ultimate Guide</title>
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            /* Theme: Lush Green & Sunset Orange */
+            --primary-color: #1b5e20; 
+            --secondary-color: #2e7d32;
+            --accent-color: #ff6f00; 
+            --light-bg: #f1f8e9;
+            --white: #ffffff;
+            --text-color: #2c3e50;
+            --card-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        .login-btn {
+            background-color: var(--accent-color);
+            padding: 8px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            border: none;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .login-btn:hover {
+            background-color: #e65100;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Hero Section with Parallax */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1596176530529-78163a4f7af2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 4px 8px rgba(0,0,0,0.6);
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            text-shadow: 1px 2px 4px rgba(0,0,0,0.6);
+            margin-bottom: 2rem;
+        }
+
+        .hero-btn {
+            padding: 12px 30px;
+            background-color: var(--white);
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .hero-btn:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1280px;
+            margin: 4rem auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .card-img {
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .card:hover .card-img img {
+            transform: scale(1.1);
+        }
+
+        /* Category Badge on Image */
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .card-content {
+            padding: 1.8rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card h3 {
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 1.2rem;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #888;
+        }
+        
+        .rating {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Login Modal */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0,0,0,0.6); 
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            padding: 3rem;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 420px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from {transform: scale(0.8); opacity: 0;}
+            to {transform: scale(1); opacity: 1;}
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 30px;
+            color: #ccc;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close:hover {
+            color: var(--accent-color);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #144a17;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-top: auto;
+        }
+        
+        footer p {
+            opacity: 0.8;
+            margin-bottom: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: var(--white);
+            text-decoration: none;
+            background: rgba(255,255,255,0.1);
+            padding: 10px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">Namma<span>Bengaluru</span></a>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#explore">Explore</a></li>
+                <li><button class="login-btn" onclick="openLogin()">Login</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Welcome to the Garden City</h1>
+        <p>From heritage palaces to high-tech parks, discover the soul of Karnataka.</p>
+        <a href="#explore" class="hero-btn">Start Exploring</a>
+    </section>
+
+    <main class="container" id="explore">
+        <div class="section-header">
+            <h2 class="section-title">Curated Destinations</h2>
+            <p class="section-subtitle">Top 12 hand-picked locations for the ultimate Bengaluru experience.</p>
+        </div>
+        
+        <div class="grid">
+            
+            <div class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1596024987796-039c6b814d2e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Cubbon Park">
+                    <span class="badge">Nature</span>
+                </div>
+                <div class="card-content">
+                    <h3>Cubbon Park</h3>
+                    <p>The "Lungs of the City." A massive 300-acre green space perfect for morning jogs and visiting the magnificent State Library.</p>
+                    <div class="card-footer">
+                        <span>Central Bengaluru</span>
+                        <span class="rating">★ 4.8</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Bangalore Palace">
+                    <span class="badge">History</span>
+                </div>
+                <div class="card-content">
+                    <h3>Bangalore Palace</h3>
+                    <p>Inspired by Windsor Castle, this architectural marvel features Tudor-style architecture and elegant wood carvings.</p>
+                    <div class="card-footer">
+                        <span>Vasanth Nagar</span>
+                        <span class="rating">★ 4.6</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1591266042698-32b35a772c36?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Lalbagh">
+                    <span class="badge">Nature</span>
+                </div>
+                <div class="card-content">
+                    <h3>Lalbagh Gardens</h3>
+                    <p>Famous for its iconic 19th-century glass house and bi-annual flower shows. Home to India's largest collection of tropical plants.</p>
+                    <div class="card-footer">
+                        <span>Mavalli</span>
+                        <span class="rating">★ 4.7</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1574843939634-1925b6348981?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Shopping">
+                    <span class="badge">Shopping</span>
+                </div>
+                <div class="card-content">
+                    <h3>Commercial Street</h3>
+                    <p>The ultimate shopping destination. From branded clothes to dirt-cheap trinkets, find everything here if you know how to bargain.</p>
+                    <div class="card-footer">
+                        <span>Shivaji Nagar</span>
+                        <span class="rating">★ 4.5</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1605626296377-5264b38d39f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="ISKCON">
+                    <span class="badge">Spiritual</span>
+                </div>
+                <div class="card-content">
+                    <h3>ISKCON Temple</h3>
+                    <p>A spiritual landmark on Hare Krishna Hill. One of the largest ISKCON temples in the world with stunning modern architecture.</p>
+                    <div class="card-footer">
+                        <span>Rajajinagar</span>
+                        <span class="rating">★ 4.9</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Food Street">
+                    <span class="badge">Gastronomy</span>
+                </div>
+                <div class="card-content">
+                    <h3>V.V. Puram Food Street</h3>
+                    <p>A vegetarian's paradise. At sunset, this street comes alive with stalls selling Gobi Manchurian, Dosa, and Floating Pani Puri.</p>
+                    <div class="card-footer">
+                        <span>Basavanagudi</span>
+                        <span class="rating">★ 4.8</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1505559868666-41f3e7b16556?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Safari">
+                    <span class="badge">Wildlife</span>
+                </div>
+                <div class="card-content">
+                    <h3>Bannerghatta Safari</h3>
+                    <p>Experience the wild side. Famous for its tiger and lion safaris, butterfly park, and a zoo set in the midst of a forest.</p>
+                    <div class="card-footer">
+                        <span>Bannerghatta Road</span>
+                        <span class="rating">★ 4.6</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1582913539824-3a7b6495d465?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="UB City">
+                    <span class="badge">Luxury</span>
+                </div>
+                <div class="card-content">
+                    <h3>UB City</h3>
+                    <p>India's first luxury mall. Visit for high-end fashion brands, fine dining rooftop restaurants, and stunning modern architecture.</p>
+                    <div class="card-footer">
+                        <span>Vittal Mallya Road</span>
+                        <span class="rating">★ 4.7</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1594109848606-c0d1645e7529?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Tipu Palace">
+                    <span class="badge">Heritage</span>
+                </div>
+                <div class="card-content">
+                    <h3>Tipu Sultan's Palace</h3>
+                    <p>An exquisite example of Indo-Islamic architecture. Built entirely of teak wood, this was the summer retreat of the ruler of Mysore.</p>
+                    <div class="card-footer">
+                        <span>Chamrajpet</span>
+                        <span class="rating">★ 4.4</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1542302327-0c58e5792d72?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Nightlife">
+                    <span class="badge">Nightlife</span>
+                </div>
+                <div class="card-content">
+                    <h3>M.G. Road & Brigade</h3>
+                    <p>The beating heart of Bangalore's nightlife. Pubs, cafes, bookstores, and neon lights make this the place to be after dark.</p>
+                    <div class="card-footer">
+                        <span>Central Business Dist</span>
+                        <span class="rating">★ 4.8</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1623945419409-f19b0d267332?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Malleswaram">
+                    <span class="badge">Culture</span>
+                </div>
+                <div class="card-content">
+                    <h3>Malleswaram</h3>
+                    <p>Step back into Old Bangalore. Known for its ancient temples, flower markets, and the best filter coffee in the city.</p>
+                    <div class="card-footer">
+                        <span>North Bengaluru</span>
+                        <span class="rating">★ 4.9</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1623395646197-4d64353a876f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Ulsoor Lake">
+                    <span class="badge">Leisure</span>
+                </div>
+                <div class="card-content">
+                    <h3>Ulsoor Lake</h3>
+                    <p>One of the biggest lakes in the city. Rent a boat, take a walk on the islands, or visit the nearby Gurudwara.</p>
+                    <div class="card-footer">
+                        <span>Ulsoor</span>
+                        <span class="rating">★ 4.3</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLogin()">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 25px; color: var(--primary-color);">Member Login</h2>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter your username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="submit-btn">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Namma Bengaluru Guide. Made with ❤️ for Namma Ooru.</p>
+        <div class="social-links">
+            <a href="#" title="Instagram">IG</a>
+            <a href="#" title="Twitter">TW</a>
+            <a href="#" title="Facebook">FB</a>
+        </div>
+    </footer>
+
+    <script>
+        // --- JAVASCRIPT LOGIC ---
+
+        var modal = document.getElementById("loginModal");
+
+        function openLogin() {
+            modal.style.display = "flex";
+        }
+
+        function closeLogin() {
+            modal.style.display = "none";
+        }
+
+        // Close when clicking outside modal
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeLogin();
+            }
+        }
+
+        function handleLogin(event) {
+            event.preventDefault(); 
+            const username = document.getElementById('username').value;
+            
+            if(username) {
+                alert("Namaskara, " + username + "! Welcome to the Ultimate Bengaluru Guide.");
+                closeLogin();
+            } else {
+                alert("Please enter a username.");
+            }
+        }
+    </script>
+</body>
+</html>
